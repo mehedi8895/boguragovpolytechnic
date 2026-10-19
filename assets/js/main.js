@@ -77,5 +77,4 @@ function setTheme(next){const theme=next==="light"?"light":"dark";document.docum
 const themeButton=$("#themeToggle");if(themeButton)themeButton.addEventListener("click",()=>setTheme(document.documentElement.dataset.theme==="dark"?"light":"dark"));
 setTheme(localStorage.getItem("bgpi-theme")||"dark");
 const observer="IntersectionObserver"in window?new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target);}}),{threshold:.12}):null;
-document.documentElement.classList.add("js-ready");
 $$(".reveal").forEach(el=>observer?observer.observe(el):el.classList.add("visible"));$("#year").textContent=new Date().getFullYear();if(window.lucide)lucide.createIcons();setLang(lang);renderTechnologies();loadContent();
