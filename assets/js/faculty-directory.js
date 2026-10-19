@@ -77,12 +77,9 @@ async function loadFaculty() {
   try {
     const {createClient} = await import("https://esm.sh/@supabase/supabase-js@2");
     const db = createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-    const {data,error} = await db.from("bgpi_faculty").select("id,name_bn,name_en,designation_bn,designation_en,department_bn,department_en,technology,photo_url,is_published,sort_order").eq("is_published",true).order("sort_order",{ascending:true});
-    if (!error && Array.isArray(data) && data.length) {
-      const merged = [...data];
-      const seen = new Set(merged.map(x=>normalize(x.name_bn||x.name_en)));
-      fallbackFaculty.forEach(x=>{if(!seen.has(normalize(x.name_bn||x.name_en))) merged.push(x);});
-      faculty = merged;
+    const {data,error} = await db.from("bgpi_faculty").select("id,name_bn,name_en,designation_bn,designation_en,department_bn,department_en,qualification_bn,qualification_en,email,phone,technology,photo_url,is_published,sort_order").eq("is_published",true).order("sort_order",{ascending:true});
+    if (!error && Array.isArray(data)) {
+      faculty = data;
       buildDepartmentOptions();
       renderFaculty();
     }
