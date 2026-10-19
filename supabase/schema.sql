@@ -12,14 +12,16 @@ create or replace function bgpi_private.is_active_admin() returns boolean langua
 revoke all on function bgpi_private.is_active_admin() from public,anon; grant execute on function bgpi_private.is_active_admin() to authenticated;
 alter table public.bgpi_admin_users enable row level security;alter table public.bgpi_faculty enable row level security;alter table public.bgpi_notices enable row level security;
 drop policy if exists bgpi_admin_read_own on public.bgpi_admin_users;create policy bgpi_admin_read_own on public.bgpi_admin_users for select to authenticated using(user_id=(select auth.uid()) and is_active=true);
+alter table public.bgpi_faculty add column if not exists qualification_bn text;
+alter table public.bgpi_faculty add column if not exists qualification_en text;
 drop policy if exists bgpi_faculty_public_read on public.bgpi_faculty;create policy bgpi_faculty_public_read on public.bgpi_faculty for select to anon,authenticated using(is_published=true or (select bgpi_private.is_active_admin()));
-drop policy if exists bgpi_faculty_admin_insert on public.bgpi_faculty;create policy bgpi_faculty_admin_insert on public.bgpi_faculty for insert to authenticated with check((select public.bgpi_is_active_admin()));
-drop policy if exists bgpi_faculty_admin_update on public.bgpi_faculty;create policy bgpi_faculty_admin_update on public.bgpi_faculty for update to authenticated using((select public.bgpi_is_active_admin())) with check((select public.bgpi_is_active_admin()));
-drop policy if exists bgpi_faculty_admin_delete on public.bgpi_faculty;create policy bgpi_faculty_admin_delete on public.bgpi_faculty for delete to authenticated using((select public.bgpi_is_active_admin()));
-drop policy if exists bgpi_notices_public_read on public.bgpi_notices;create policy bgpi_notices_public_read on public.bgpi_notices for select to anon,authenticated using(is_published=true or (select public.bgpi_is_active_admin()));
-drop policy if exists bgpi_notices_admin_insert on public.bgpi_notices;create policy bgpi_notices_admin_insert on public.bgpi_notices for insert to authenticated with check((select public.bgpi_is_active_admin()));
-drop policy if exists bgpi_notices_admin_update on public.bgpi_notices;create policy bgpi_notices_admin_update on public.bgpi_notices for update to authenticated using((select public.bgpi_is_active_admin())) with check((select public.bgpi_is_active_admin()));
-drop policy if exists bgpi_notices_admin_delete on public.bgpi_notices;create policy bgpi_notices_admin_delete on public.bgpi_notices for delete to authenticated using((select public.bgpi_is_active_admin()));
+drop policy if exists bgpi_faculty_admin_insert on public.bgpi_faculty;create policy bgpi_faculty_admin_insert on public.bgpi_faculty for insert to authenticated with check((select bgpi_private.is_active_admin()));
+drop policy if exists bgpi_faculty_admin_update on public.bgpi_faculty;create policy bgpi_faculty_admin_update on public.bgpi_faculty for update to authenticated using((select bgpi_private.is_active_admin())) with check((select bgpi_private.is_active_admin()));
+drop policy if exists bgpi_faculty_admin_delete on public.bgpi_faculty;create policy bgpi_faculty_admin_delete on public.bgpi_faculty for delete to authenticated using((select bgpi_private.is_active_admin()));
+drop policy if exists bgpi_notices_public_read on public.bgpi_notices;create policy bgpi_notices_public_read on public.bgpi_notices for select to anon,authenticated using(is_published=true or (select bgpi_private.is_active_admin()));
+drop policy if exists bgpi_notices_admin_insert on public.bgpi_notices;create policy bgpi_notices_admin_insert on public.bgpi_notices for insert to authenticated with check((select bgpi_private.is_active_admin()));
+drop policy if exists bgpi_notices_admin_update on public.bgpi_notices;create policy bgpi_notices_admin_update on public.bgpi_notices for update to authenticated using((select bgpi_private.is_active_admin())) with check((select bgpi_private.is_active_admin()));
+drop policy if exists bgpi_notices_admin_delete on public.bgpi_notices;create policy bgpi_notices_admin_delete on public.bgpi_notices for delete to authenticated using((select bgpi_private.is_active_admin()));
 grant select on public.bgpi_faculty,public.bgpi_notices to anon,authenticated;grant insert,update,delete on public.bgpi_faculty,public.bgpi_notices to authenticated;grant select on public.bgpi_admin_users to authenticated;
 -- Create a user via Supabase Dashboard > Authentication > Users, then promote that user's UUID:
 -- insert into public.bgpi_admin_users(user_id,role,is_active) values('AUTH_USER_UUID_HERE','owner',true)
