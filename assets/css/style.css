@@ -358,3 +358,66 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
   .tech-detail-card:hover,.teacher-card:hover,.map-card:hover,.principal-card:hover,.btn:hover{transform:none!important}
   .map-pulse,.tech-detail-card:before{animation:none!important}
 }
+
+
+/* Theme switch control */
+.top-controls{display:flex;align-items:center;gap:10px}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:29px;padding:5px 10px;border:1px solid #486176;border-radius:7px;background:#10283b;color:#f2d17b;font-size:11px;font-weight:800;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.theme-toggle svg{width:14px;height:14px}
+.theme-toggle:hover{transform:translateY(-1px);border-color:#79d7ff}
+@media(max-width:720px){.topinner{gap:8px}.top-controls{gap:6px}.theme-toggle{padding:5px 7px;font-size:10px}.topbar .languages{flex:none}}
+/* Light mode is opt-in and persists independently from language choice. */
+:root[data-theme="light"]{color-scheme:light;--bg-main:#f5f8fc;--bg-panel:#fff;--bg-panel-raised:#edf4fa;--text-main:#18324a;--text-secondary:#4f6578;--text-muted:#61788b;--accent-blue:#176b9d;--accent-gold:#94651b}
+:root[data-theme="light"] body{background:#f5f8fc;color:#18324a}
+:root[data-theme="light"] .topbar{background:#e9f1f8;color:#304e66;border-bottom-color:#d5e2ed}
+:root[data-theme="light"] .header{background:#fffffff2;border-bottom-color:#d8e4ee;box-shadow:0 8px 24px #183b5710}
+:root[data-theme="light"] .brand,:root[data-theme="light"] .brand b{color:#16344e}
+:root[data-theme="light"] .brand small{color:#627b8e}
+:root[data-theme="light"] .nav nav a{color:#344f66}
+:root[data-theme="light"] .nav nav a:hover,:root[data-theme="light"] .nav nav a.active{color:#8b5c10}
+:root[data-theme="light"] .menu{background:#fff;color:#173a55;border-color:#d5e2ed}
+:root[data-theme="light"] .theme-toggle{background:#fff;color:#17466b;border-color:#cbdbe7}
+:root[data-theme="light"] .lang{color:#3e5c73}
+:root[data-theme="light"] .lang.active{background:#164f78;color:#fff}
+:root[data-theme="light"] .section,:root[data-theme="light"] .about,:root[data-theme="light"] .teachers,:root[data-theme="light"] .notices{background:#f8fbfe;color:#18324a}
+:root[data-theme="light"] .section:nth-of-type(even),:root[data-theme="light"] .tech-section{background:#edf4fa!important}
+:root[data-theme="light"] .section h2,:root[data-theme="light"] .about-grid h2,:root[data-theme="light"] .contact-heading h2,:root[data-theme="light"] h3,:root[data-theme="light"] .tech-detail-card h3{color:#17334d}
+:root[data-theme="light"] :where(p,li,small,label,dd,dt,.muted,.fineprint,.faculty-intro,.job-caveat,.tech-card p,.teacher-info p,.notice-body p,.empty p,.empty-notice,.quick-grid small,.map-button small,.contact-line small){color:#536b7e}
+:root[data-theme="light"] :where(h1,h2,h3,h4,h5,h6,b,strong,.brand b,.quick-grid b,.notice-body b,.teacher-info h3,.tech-card h3){color:#17334d}
+:root[data-theme="light"] .kicker{color:#8c621d!important}
+:root[data-theme="light"] .quick,:root[data-theme="light"] .quick-grid>a{background:#fff!important;border-color:#dce7ef!important;color:#17334d}
+:root[data-theme="light"] .quick-grid>a>svg:first-child{background:#e8f2f9;color:#1a6d9c}
+:root[data-theme="light"] .tech-detail-card,:root[data-theme="light"] .teacher-card,:root[data-theme="light"] .principal-card,:root[data-theme="light"] .contact-card,:root[data-theme="light"] .map-card{background:#fff!important;border-color:#d7e4ee!important;color:#18324a;box-shadow:0 10px 28px #183b570c}
+:root[data-theme="light"] .tech-icon-panel{background:linear-gradient(135deg,#e5f2fb,#f8fbfe);border-color:#d4e4ef}
+:root[data-theme="light"] .tech-icon-panel>span{color:#244b68}
+:root[data-theme="light"] .career-details{background:#f5f9fc;border-color:#d5e3ed;color:#344f65}
+:root[data-theme="light"] .career-details summary{color:#855b16}
+:root[data-theme="light"] .career-content h4{color:#214e70}
+:root[data-theme="light"] .career-content li{color:#425c70}
+:root[data-theme="light"] .job-sources a{background:#eaf4fb!important;color:#185a82!important;border-color:#cddfeb}
+:root[data-theme="light"] .tech-teacher-link,:root[data-theme="light"] .tech-card>a{color:#145f8d!important}
+:root[data-theme="light"] .empty{background:#fff;border-color:#cfdeea;color:#17334d}
+:root[data-theme="light"] .empty p{color:#536b7e}
+:root[data-theme="light"] .teacher-photo{background:linear-gradient(135deg,#e7f1f7,#f8fbfd);color:#547c95}
+:root[data-theme="light"] .teacher-tag{background:#e8f3f9;color:#245c7d}
+:root[data-theme="light"] .notice-item{background:transparent!important;border-bottom-color:#dce7ef!important}
+:root[data-theme="light"] .notice-date{background:#f2f7fb;border-color:#d6e3ed;color:#805917}
+:root[data-theme="light"] .notice-tag{background:#e8f2f8;color:#285d7c}
+:root[data-theme="light"] .contact{background:linear-gradient(125deg,#eaf3fa,#f8fbfe)!important}
+:root[data-theme="light"] .contact-line{color:#2c4c65;border-bottom-color:#e1ebf2}
+:root[data-theme="light"] .contact-line small,:root[data-theme="light"] .contact-card-title small{color:#607b90}
+:root[data-theme="light"] .contact-card-title{border-bottom-color:#e1ebf2}
+:root[data-theme="light"] .contact-symbol,:root[data-theme="light"] .map-card-bottom>a{background:#e7f3fa;color:#176a9d}
+:root[data-theme="light"] .map-card-bottom b{color:#173c59}
+:root[data-theme="light"] .map-button{background:#fff;border-color:#d2e1ec;color:#174b70}
+:root[data-theme="light"] .map-button small{color:#627b8e}
+:root[data-theme="light"] footer{background:#e8f0f6!important;color:#304d64;border-top-color:#d5a747}
+:root[data-theme="light"] footer a{color:#7c5615}
+:root[data-theme="light"] .foot-top .brand b{color:#17334d}
+:root[data-theme="light"] .foot-top .brand small,:root[data-theme="light"] .foot-top>p,:root[data-theme="light"] .foot-bottom{color:#536b7e}
+:root[data-theme="light"] .foot-bottom{border-top-color:#d2e0ea}
+:root[data-theme="light"] .filters label,:root[data-theme="light"] .filters select{background:#fff;border-color:#d3e0e9;color:#203f58}
+:root[data-theme="light"] .filters input{background:transparent;color:#203f58}
+:root[data-theme="light"] .filters input::placeholder{color:#687f91!important}
+:root[data-theme="light"] .disclaimer{background:#fff9ed;color:#725d38}
+:root[data-theme="light"] .official-link{background:#edf4f8;color:#214d6b}
