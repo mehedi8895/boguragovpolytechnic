@@ -125,3 +125,32 @@ footer{background:#0b2d55}
 @media(max-width:1000px){.hero-cinematic-content{align-items:flex-start;flex-direction:column;justify-content:center;padding-top:90px;padding-bottom:120px}.hero-cinematic-copy{max-width:720px}.hero-photo-caption{margin:35px 0 0;align-self:flex-start}.hero-cinematic h1{font-size:clamp(46px,7vw,72px)}}
 @media(max-width:650px){.hero-cinematic{min-height:calc(100svh - 78px)}.hero-bg-photo{object-position:57% center}.hero-cinema-shade{background:linear-gradient(90deg,rgba(3,16,32,.91),rgba(4,24,45,.68)),linear-gradient(0deg,rgba(3,14,27,.88),transparent 60%)}.hero-cinematic-content{padding-top:65px;padding-bottom:112px}.hero-cinematic-copy{padding:0}.cinema-kicker{font-size:9px;gap:7px;padding:8px}.cinema-kicker b{font-size:8px;letter-spacing:1px;padding-left:8px;margin-left:3px}.cinema-overline{margin-top:26px;font-size:8px;letter-spacing:1.4px;gap:8px}.hero-cinematic h1{font-size:clamp(39px,10vw,58px);letter-spacing:-1.7px;line-height:1.17;margin:17px 0 14px}.hero-cinematic-copy>p{font-size:13px;line-height:1.85}.hero-cinematic .actions{margin-top:20px;gap:8px}.hero-cinematic .btn{min-height:44px;padding:0 13px;font-size:10px}.hero-tech-meta{gap:12px;margin-top:24px;padding-top:15px}.hero-tech-meta span{font-size:9px;gap:5px}.hero-tech-meta svg{width:14px;height:14px}.hero-photo-caption{margin-top:24px;padding:11px 12px;min-width:0;width:min(100%,350px)}.caption-marker{width:34px;height:34px}.hero-photo-caption b{font-size:10px}.hero-photo-caption em{font-size:8px}.cinema-bottom>div{min-height:50px}.cinema-bottom>div>span,.cinema-bottom a{font-size:8px;gap:6px}.cinema-bottom>div>span{max-width:55%}.cinema-bottom a{white-space:nowrap}.hero-tech-grid{background-size:36px 36px}}
 @media(prefers-reduced-motion:reduce){.hero-bg-photo{transform:none}}
+
+/* Technical education visual language across the entire site */
+:root{--navy:#082747;--navy2:#145b92;--gold:#e8b957;--paper:#f2f7fb;--line:#dbe6f0}
+.kicker{font-family:Manrope,"Hind Siliguri",sans-serif;font-weight:800;letter-spacing:1.6px;text-transform:uppercase}
+.section h2,.about-grid h2{letter-spacing:-.8px}
+.tech-section{position:relative;isolation:isolate;background:#f1f6fb!important;overflow:hidden}
+.tech-section:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(#1d5a8b0b 1px,transparent 1px),linear-gradient(90deg,#1d5a8b0b 1px,transparent 1px);background-size:32px 32px}
+.tech-section .section-head{position:relative}
+.tech-section .section-head:after{content:"TECHNOLOGY / ENGINEERING / INNOVATION";display:block;position:absolute;right:0;top:-8px;color:#7d9ab4;font:700 9px Manrope,sans-serif;letter-spacing:2px;writing-mode:vertical-rl;opacity:.7}
+.tech-detail-card{border-top:3px solid #1c6da7;box-shadow:0 8px 22px #143f6610}
+.tech-detail-card:nth-child(3n+2){border-top-color:#20a9c7}
+.tech-detail-card:nth-child(3n){border-top-color:#d7a53f}
+.tech-detail-card .card-top small{letter-spacing:1.5px;color:#6e879f}
+.tech-icon-panel{border-radius:5px;background:linear-gradient(135deg,#e3f1ff,#f8fbff);border:1px solid #d7e8f8}
+.career-details{border-radius:5px}
+.career-details summary{font-family:Manrope,"Hind Siliguri",sans-serif;letter-spacing:.1px}
+.job-sources a{border-radius:4px}
+.quick-grid>a>svg:first-child{border-radius:9px}
+.navcta{border-radius:5px}
+.nav nav a{font-weight:700}
+.notices{background:linear-gradient(135deg,#f4f8fc,#eaf3fa)!important}
+.notice-item{border-bottom:1px solid #d8e5f1}
+.notice-date{border-radius:5px}
+.notice-tag{border-radius:4px}
+.teacher-card,.teacher-photo{border-radius:5px}
+.contact{background:linear-gradient(125deg,#e8f2fc,#f7faff)}
+.contact-card{border-radius:8px}
+footer{border-top:3px solid #e5b64e}
+@media(max-width:650px){.tech-section .section-head:after{font-size:7px;right:2px;top:0}.tech-detail-card{border-top-width:3px}}
