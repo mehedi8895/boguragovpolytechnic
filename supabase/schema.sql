@@ -7,11 +7,12 @@ create table if not exists public.bgpi_notices(id uuid primary key default gen_r
 create index if not exists bgpi_faculty_published_order_idx on public.bgpi_faculty(is_published,sort_order);
 create index if not exists bgpi_faculty_technology_idx on public.bgpi_faculty(technology);
 create index if not exists bgpi_notices_published_date_idx on public.bgpi_notices(is_published,published_at desc);
-create or replace function public.bgpi_is_active_admin() returns boolean language sql stable security definer set search_path='' as $$ select exists(select 1 from public.bgpi_admin_users a where a.user_id=(select auth.uid()) and a.is_active=true); $$;
-revoke all on function public.bgpi_is_active_admin() from public; revoke execute on function public.bgpi_is_active_admin() from anon; grant execute on function public.bgpi_is_active_admin() to authenticated;
+create schema if not exists bgpi_private; revoke all on schema bgpi_private from public,anon; grant usage on schema bgpi_private to authenticated;
+create or replace function bgpi_private.is_active_admin() returns boolean language sql stable security definer set search_path='' as $ select exists(select 1 from public.bgpi_admin_users a where a.user_id=(select auth.uid()) and a.is_active=true); $;
+revoke all on function bgpi_private.is_active_admin() from public,anon; grant execute on function bgpi_private.is_active_admin() to authenticated;
 alter table public.bgpi_admin_users enable row level security;alter table public.bgpi_faculty enable row level security;alter table public.bgpi_notices enable row level security;
 drop policy if exists bgpi_admin_read_own on public.bgpi_admin_users;create policy bgpi_admin_read_own on public.bgpi_admin_users for select to authenticated using(user_id=(select auth.uid()) and is_active=true);
-drop policy if exists bgpi_faculty_public_read on public.bgpi_faculty;create policy bgpi_faculty_public_read on public.bgpi_faculty for select to anon,authenticated using(is_published=true or (select public.bgpi_is_active_admin()));
+drop policy if exists bgpi_faculty_public_read on public.bgpi_faculty;create policy bgpi_faculty_public_read on public.bgpi_faculty for select to anon,authenticated using(is_published=true or (select bgpi_private.is_active_admin()));
 drop policy if exists bgpi_faculty_admin_insert on public.bgpi_faculty;create policy bgpi_faculty_admin_insert on public.bgpi_faculty for insert to authenticated with check((select public.bgpi_is_active_admin()));
 drop policy if exists bgpi_faculty_admin_update on public.bgpi_faculty;create policy bgpi_faculty_admin_update on public.bgpi_faculty for update to authenticated using((select public.bgpi_is_active_admin())) with check((select public.bgpi_is_active_admin()));
 drop policy if exists bgpi_faculty_admin_delete on public.bgpi_faculty;create policy bgpi_faculty_admin_delete on public.bgpi_faculty for delete to authenticated using((select public.bgpi_is_active_admin()));
