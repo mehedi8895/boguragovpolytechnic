@@ -1,0 +1,24 @@
+-- Apply to the dedicated BGPI Supabase project after review.
+create extension if not exists pgcrypto;
+create table if not exists public.admin_users(user_id uuid primary key references auth.users(id) on delete cascade,role text not null default 'editor' check(role in('owner','admin','editor')),is_active boolean not null default true,created_at timestamptz not null default now());
+create table if not exists public.faculty(id uuid primary key default gen_random_uuid(),name_bn text not null,name_en text not null,designation_bn text,designation_en text,department_bn text,department_en text,technology text not null default 'other' check(technology in('civil','electrical','computer','mechanical','other')),qualification_bn text,qualification_en text,email text,phone text,photo_url text,sort_order integer not null default 100,is_published boolean not null default false,created_by uuid references auth.users(id) on delete set null,updated_by uuid references auth.users(id) on delete set null,created_at timestamptz not null default now(),updated_at timestamptz not null default now());
+create table if not exists public.notices(id uuid primary key default gen_random_uuid(),title_bn text not null,title_en text not null,summary_bn text,summary_en text,file_url text,category text not null default 'general',published_at timestamptz,is_published boolean not null default false,created_by uuid references auth.users(id) on delete set null,updated_by uuid references auth.users(id) on delete set null,created_at timestamptz not null default now(),updated_at timestamptz not null default now());
+create index if not exists faculty_published_order_idx on public.faculty(is_published,sort_order);
+create index if not exists faculty_technology_idx on public.faculty(technology);
+create index if not exists notices_published_date_idx on public.notices(is_published,published_at desc);
+create or replace function public.is_active_admin() returns boolean language sql stable security definer set search_path='' as $$ select exists(select 1 from public.admin_users a where a.user_id=(select auth.uid()) and a.is_active=true); $$;
+revoke all on function public.is_active_admin() from public; grant execute on function public.is_active_admin() to authenticated;
+alter table public.admin_users enable row level security;alter table public.faculty enable row level security;alter table public.notices enable row level security;
+drop policy if exists "admins read own record" on public.admin_users;create policy "admins read own record" on public.admin_users for select to authenticated using(user_id=(select auth.uid()) and is_active=true);
+drop policy if exists "public reads published faculty" on public.faculty;create policy "public reads published faculty" on public.faculty for select to anon,authenticated using(is_published=true or (select public.is_active_admin()));
+drop policy if exists "admins insert faculty" on public.faculty;create policy "admins insert faculty" on public.faculty for insert to authenticated with check((select public.is_active_admin()));
+drop policy if exists "admins update faculty" on public.faculty;create policy "admins update faculty" on public.faculty for update to authenticated using((select public.is_active_admin())) with check((select public.is_active_admin()));
+drop policy if exists "admins delete faculty" on public.faculty;create policy "admins delete faculty" on public.faculty for delete to authenticated using((select public.is_active_admin()));
+drop policy if exists "public reads published notices" on public.notices;create policy "public reads published notices" on public.notices for select to anon,authenticated using(is_published=true or (select public.is_active_admin()));
+drop policy if exists "admins insert notices" on public.notices;create policy "admins insert notices" on public.notices for insert to authenticated with check((select public.is_active_admin()));
+drop policy if exists "admins update notices" on public.notices;create policy "admins update notices" on public.notices for update to authenticated using((select public.is_active_admin())) with check((select public.is_active_admin()));
+drop policy if exists "admins delete notices" on public.notices;create policy "admins delete notices" on public.notices for delete to authenticated using((select public.is_active_admin()));
+grant select on public.faculty,public.notices to anon,authenticated;grant insert,update,delete on public.faculty,public.notices to authenticated;grant select on public.admin_users to authenticated;
+-- Create an admin in Supabase Auth first, then run as project owner:
+-- insert into public.admin_users(user_id,role,is_active) values('AUTH_USER_UUID_HERE','owner',true);
+-- Never put service_role keys in the frontend. Configure storage policies before public uploads.
