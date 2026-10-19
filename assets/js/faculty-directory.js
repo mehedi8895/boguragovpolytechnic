@@ -49,13 +49,20 @@ function renderFaculty() {
       .some(v => normalize(v).includes(query));
   });
   $("#resultCount").textContent = bnDigits(rows.length) + " জন শিক্ষক";
-  $("#facultyList").innerHTML = rows.length ? rows.map((x,i) => {
-    const name = x.name_bn || x.name_en || "নাম উল্লেখ নেই";
-    const designation = x.designation_bn || x.designation_en || "পদবি উল্লেখ নেই";
+  const grouped = rows.reduce((groups, x) => {
     const dept = x.department_bn || x.department_en || "বিভাগ উল্লেখ নেই";
-    const phone = x.mobile || x.mobile_number || x.phone || "";
-    return '<article class="faculty-card"><div class="serial">'+bnDigits(i+1)+'</div><div class="faculty-details"><h2>'+escapeHTML(name)+'</h2><p class="designation">'+escapeHTML(designation)+'</p><div class="meta"><span class="department"><i data-lucide="building-2"></i>'+escapeHTML(dept)+'</span>'+(phone?'<a class="phone" href="tel:'+escapeHTML(phone.replace(/[^+\d]/g,""))+'"><i data-lucide="phone"></i>'+escapeHTML(phone)+'</a>':'')+'</div></div></article>';
-  }).join("") : '<div class="empty"><i data-lucide="search-x"></i><b>কোনো শিক্ষক পাওয়া যায়নি</b><p>অন্য নাম লিখুন অথবা বিভাগ পরিবর্তন করুন।</p></div>';
+    (groups[dept] ||= []).push(x);
+    return groups;
+  }, {});
+  const departments = Object.keys(grouped).sort((a,b)=>a.localeCompare(b,"bn"));
+  $("#facultyList").innerHTML = rows.length ? departments.map(dept =>
+    '<section class="department-group"><div class="department-heading"><i data-lucide="building-2"></i><h2>'+escapeHTML(dept)+'</h2><span>'+bnDigits(grouped[dept].length)+' জন</span></div><div class="department-people">'+grouped[dept].map((x,i) => {
+      const name = x.name_bn || x.name_en || "নাম উল্লেখ নেই";
+      const designation = x.designation_bn || x.designation_en || "পদবি উল্লেখ নেই";
+      const phone = x.mobile || x.mobile_number || x.phone || "";
+      return '<article class="faculty-card"><div class="serial">'+bnDigits(i+1)+'</div><div class="faculty-details"><h3>'+escapeHTML(name)+'</h3><p class="designation">'+escapeHTML(designation)+'</p>'+(phone?'<div class="meta"><a class="phone" href="tel:'+escapeHTML(phone.replace(/[^+\\d]/g,""))+'"><i data-lucide="phone"></i>'+escapeHTML(phone)+'</a></div>':'')+'</div></article>';
+    }).join("")+'</div></section>'
+  ).join("") : '<div class="empty"><i data-lucide="search-x"></i><b>কোনো শিক্ষক পাওয়া যায়নি</b><p>অন্য নাম লিখুন অথবা বিভাগ পরিবর্তন করুন।</p></div>';
   if (window.lucide) lucide.createIcons();
 }
 function buildDepartmentOptions() {
@@ -70,7 +77,7 @@ async function loadFaculty() {
   try {
     const {createClient} = await import("https://esm.sh/@supabase/supabase-js@2");
     const db = createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
-    const {data,error} = await db.from("bgpi_faculty").select("id,name_bn,name_en,designation_bn,designation_en,department_bn,department_en,technology,photo_url,mobile,phone,mobile_number,is_published,sort_order").eq("is_published",true).order("sort_order",{ascending:true});
+    const {data,error} = await db.from("bgpi_faculty").select("id,name_bn,name_en,designation_bn,designation_en,department_bn,department_en,technology,photo_url,is_published,sort_order").eq("is_published",true).order("sort_order",{ascending:true});
     if (!error && Array.isArray(data) && data.length) {
       const merged = [...data];
       const seen = new Set(merged.map(x=>normalize(x.name_bn||x.name_en)));
