@@ -536,55 +536,5 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
   .developer-credit .credit-meta{max-width:250px}
 }
 
-/* Stable layout recovery: keep all rendered sections visible without animation dependencies. */
-.reveal,
-.reveal.visible,
-.tech-card,
-.tech-detail-card,
-.teacher-card,
-.notice-item,
-.notice-card,
-.empty,
-.empty-notice,
-.quick-grid > a {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-}
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: stretch;
-  gap: 18px;
-}
-.tech-card,
-.tech-detail-card {
-  min-width: 0;
-  height: 100%;
-}
-.teacher-contact {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 8px;
-  max-width: 100%;
-  font-size: 10px;
-  line-height: 1.45;
-  color: var(--muted);
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-.teacher-contact svg { width: 13px; height: 13px; flex: none; color: var(--gold); }
-.teacher-info { min-width: 0; }
-.teacher-info h3, .teacher-info p { overflow-wrap: anywhere; }
-.teacher-card { min-width: 0; }
-@media (max-width: 900px) {
-  .tech-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 560px) {
-  .tech-grid, .teacher-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .teacher-contact { font-size: 9px; }
-}
-@media (max-width: 380px) {
-  .tech-grid, .teacher-grid { grid-template-columns: 1fr; }
-}
+/* Keep dynamically rendered sections visible even if reveal animation JS fails. */
+.reveal,.reveal.visible,.tech-card,.tech-detail-card,.teacher-card,.notice-item,.notice-card{opacity:1!important;visibility:visible!important;transform:none!important}
