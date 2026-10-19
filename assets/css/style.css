@@ -979,3 +979,9 @@ button,input,select,a{accent-color:var(--engineering-cyan)}
 .department-heading>svg{color:#29b6c9!important}
 :root[data-theme="light"] .serial{background:#e2f3f6!important;border-color:#b9e2e8!important;color:#12667d!important}
 :root[data-theme="light"] .meta span,:root[data-theme="light"] .meta a{background:#eaf3f6!important;color:#1a4053!important}
+
+
+/* Resilience fix: never hide page content when a script fails to initialize. */
+.reveal{opacity:1;transform:none;transition:opacity .7s,transform .7s}
+.js-ready .reveal{opacity:0;transform:translateY(16px)}
+.js-ready .reveal.visible{opacity:1;transform:none}
