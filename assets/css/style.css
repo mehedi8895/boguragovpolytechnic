@@ -971,3 +971,11 @@ button,input,select,a{accent-color:var(--engineering-cyan)}
  body{background-size:28px 28px}
  .hero{background-size:28px 28px,28px 28px,auto,auto}
 }
+
+/* Final shared engineering accents for the searchable directory and action controls. */
+.clear-btn{background:linear-gradient(135deg,#147c96,#0c536f)!important;border-color:#29b6c9!important;color:#fff!important}
+.directory-hero .breadcrumb a{color:#ffd083}
+.directory-count strong{color:var(--ink)}
+.department-heading>svg{color:#29b6c9!important}
+:root[data-theme="light"] .serial{background:#e2f3f6!important;border-color:#b9e2e8!important;color:#12667d!important}
+:root[data-theme="light"] .meta span,:root[data-theme="light"] .meta a{background:#eaf3f6!important;color:#1a4053!important}
