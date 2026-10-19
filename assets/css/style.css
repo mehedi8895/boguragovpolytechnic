@@ -269,3 +269,92 @@ input,select{background:#0b2031;color:#e4eef7;border-color:#31516a}
 ::selection{background:#d8ad4e;color:#071522}
 @media(max-width:850px){.nav nav{background:#0b1c2b;border-color:#29465b;box-shadow:0 15px 28px #0008}.nav nav a{color:#e0eaf2}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+
+/* Dark-mode readability and motion polish — contrast-safe final overrides */
+:root{
+  color-scheme:dark;
+  --bg-main:#081725;
+  --bg-panel:#10283b;
+  --bg-panel-raised:#143247;
+  --text-main:#edf4fb;
+  --text-secondary:#c0d0df;
+  --text-muted:#a5b9ca;
+  --accent-blue:#78d5ff;
+  --accent-gold:#f1cb70;
+}
+body{color:var(--text-main);background:var(--bg-main);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::placeholder{color:#9bb0c2!important;opacity:1}
+:where(p,li,small,label,dd,dt,.muted,.fineprint,.faculty-intro,.job-caveat,.tech-card p,.teacher-info p,.notice-body p,.empty p,.empty-notice,.quick-grid small,.map-button small,.contact-line small){color:var(--text-secondary)}
+:where(h1,h2,h3,h4,h5,h6,b,strong,.brand b,.quick-grid b,.notice-body b,.teacher-info h3,.tech-card h3){color:#f3f7fc}
+:where(.section h2 em,.about-grid h2 em,.contact-heading h2 em){color:var(--accent-gold)!important;-webkit-text-fill-color:var(--accent-gold)}
+.kicker{color:#f0c96e!important}
+.section,.about,.teachers,.notices{background:#0a1b2a;color:var(--text-main)}
+.section:nth-of-type(even){background:#0b1e2e}
+.about-copy>p,.section-head>p,.section p{color:var(--text-secondary)}
+.disclaimer{background:#142b3c;color:#d5c6a5;border-left-color:var(--accent-gold)}
+.points span{color:#e1ebf4}
+.points svg{color:#6ee0b4}
+.quick{background:#0a1b2a;border-bottom-color:#29465b}
+.quick-grid>a{color:#edf4fb}
+.quick-grid>a>svg:first-child{background:#19374d;color:#82d8ff}
+.quick-grid .arrow{color:#9eb7ca}
+.nav nav a,.nav nav a:visited{color:#d5e3ef}
+.nav nav a:hover,.nav nav a.active{color:#f5ce73}
+.menu{background:#10283b;color:#f3f7fb;border-color:#36546a}
+.lang{color:#e5edf5}
+.lang.active{background:#f1cb70;color:#11283b}
+.tech-detail-card,.teacher-card,.principal-card,.contact-card,.map-card{color:#edf4fb}
+.tech-detail-card p,.teacher-info p,.notice-body p{color:#c0d0df}
+.tech-detail-card .card-top small{color:#b3c7d8}
+.tech-icon-panel{color:#e8f3fb}
+.tech-icon-panel>span{color:#e8f3fb}
+.career-details{background:#0b2031;border:1px solid #31516a}
+.career-details summary{color:#f6d17b}
+.career-content{color:#dce8f2}
+.career-content h4{color:#f1ca70}
+.career-content li{color:#d1deea;line-height:1.8}
+.job-sources a{display:inline-flex;align-items:center;background:#18374e!important;color:#c6edff!important;border:1px solid #365b73}
+.tech-teacher-link,.tech-card>a{color:#8cddff!important}
+.tech-teacher-link:hover,.tech-card>a:hover{color:#f5d17c!important}
+.filters label,.filters select{background:#0e2537;border-color:#34536a;color:#edf4fb}
+.filters input{background:transparent;color:#f1f6fb}
+.filters input::placeholder{color:#a5b9ca!important}
+.empty{background:#10283b;border-color:#36556c;color:#edf4fb}
+.empty p{color:#c1d0de}
+.teacher-photo{background:linear-gradient(135deg,#16364d,#10283b);color:#a6dff7}
+.teacher-tag{background:#1a3b51;color:#bceaff}
+.notice-list{border-top-color:#29465b}
+.notice-item{border-bottom-color:#29465b}
+.notice-date{background:#18374e;border-color:#36566d;color:#f3d17d}
+.notice-tag{background:#1b3b51;color:#d3edfb}
+.contact-line{color:#e0ebf4}
+.contact-line small,.contact-card-title small{color:#b4c7d7}
+.contact-card-title{border-bottom-color:#365166}
+.contact-symbol{background:#193b53;color:#80dbff}
+.map-card-bottom small{color:#f0ca74}
+.map-card-bottom b{color:#f0f6fc}
+.map-button{color:#edf6fd}
+.map-button small{color:#bfd0df}
+.official-link{background:#19374d;color:#d7edfb}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #70d5ff;outline-offset:3px}
+.btn{transition:transform .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .22s ease}
+.btn:hover{transform:translateY(-2px)}
+.tech-detail-card,.teacher-card,.map-card,.principal-card{transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}
+.tech-detail-card:hover,.teacher-card:hover,.map-card:hover,.principal-card:hover{border-color:#4b8caf!important;box-shadow:0 16px 36px #0005}
+.hero-cinematic:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,#07142120,transparent 60%);z-index:0}
+.hero-cinematic-content,.cinema-bottom{z-index:1}
+.hero-bg-photo{filter:saturate(.82) contrast(1.04)}
+@media(max-width:720px){
+  .brand b{color:#f5f8fc;line-height:1.45}
+  .section-head>p,.about-copy>p{font-size:13px;line-height:1.9}
+  .tech-card p{min-height:0;color:#c5d4e1}
+  .career-content li{font-size:12px}
+  .notice-body b{line-height:1.65}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1!important;transform:none!important}
+  .tech-detail-card,.teacher-card,.map-card,.principal-card,.btn,.tech-icon-panel>svg{transition:none!important}
+  .tech-detail-card:hover,.teacher-card:hover,.map-card:hover,.principal-card:hover,.btn:hover{transform:none!important}
+  .map-pulse,.tech-detail-card:before{animation:none!important}
+}
