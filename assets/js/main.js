@@ -1,4 +1,3 @@
-import spreadsheetFaculty from "./faculty-data.js";
 const SUPABASE_URL = "https://pkvcnxxuulzglzavzwuf.supabase.co"; // Shared project; BGPI content uses isolated bgpi_ tables.
 const SUPABASE_ANON_KEY = "sb_publishable_zYxVL8KCLEc52uYJ27eQSg_b1K4rRb0"; // Public publishable key only; never expose service-role keys.
 const copy={
@@ -7,43 +6,7 @@ en:{tagline:"Skills, innovation and the road ahead",brand:"Bogura Government Pol
 };
 let lang=localStorage.getItem("bgpi-language")||"bn",faculty=[],notices=[];
 
-const officialFaculty=[
-{name_bn:"মোঃ শফিউল আল আজিজ",designation_bn:"চিফ ইন্সট্রাক্টর ও বিভাগীয় প্রধান; একাডেমিক ইনচার্জ",department_bn:"মেকানিক্যাল টেকনোলজি",technology:"mechanical"},
-{name_bn:"মোঃ মনিরুল ইসলাম",designation_bn:"চীফ ইন্সট্রাক্টর ও বিভাগীয় প্রধান (২য় শিফট)",department_bn:"পাওয়ার টেকনোলজি",technology:"power"},
-{name_bn:"মোঃ আব্বাছ আলী",designation_bn:"চিফ ইন্সট্রাক্টর (নন-টেক)",department_bn:"আনুষঙ্গিক বিভাগ",technology:"other"},
-{name_bn:"মোঃ আব্দুল হালিম সরকার",designation_bn:"চিফ ইন্সট্রাক্টর ও বিভাগীয় প্রধান (প্রথম শিফট)",department_bn:"ইলেকট্রিক্যাল টেকনোলজি",technology:"electrical"},
-{name_bn:"মোঃ সুলতান মাহমুদ",designation_bn:"জুনিয়র ইন্সট্রাক্টর",department_bn:"মাইনিং অ্যান্ড মাইন সার্ভে টেকনোলজি",technology:"mining"},
-{name_bn:"সৈয়দ মোঃ মামুনূর রশীদ",designation_bn:"চিফ ইন্সট্রাক্টর ও বিভাগীয় প্রধান (২য় শিফট)",department_bn:"ইলেকট্রনিক্স টেকনোলজি",technology:"electronics"},
-{name_bn:"প্রকৌঃ মোঃ আব্দুল মালেক",designation_bn:"চিফ ইন্সট্রাক্টর ও বিভাগীয় প্রধান (প্রথম শিফট)",department_bn:"সিভিল টেকনোলজি",technology:"civil"},
-{name_bn:"সাজিম মিয়া",designation_bn:"ইন্সট্রাক্টর",department_bn:"ট্যুরিজম অ্যান্ড হসপিটালিটি ম্যানেজমেন্ট",technology:"tourism"},
-{name_bn:"মোঃ রেজাউল করিম",designation_bn:"চিফ ইন্সট্রাক্টর ও বিভাগীয় প্রধান (২য় শিফট)",department_bn:"রেফ্রিজারেশন এন্ড এয়ার কন্ডিশনিং টেকনোলজি",technology:"rac"},
-{name_bn:"মোঃ হারুন অর রশিদ",designation_bn:"চিফ ইন্সট্রাক্টর",department_bn:"সিভিল টেকনোলজি",technology:"civil"},
-{name_bn:"মান্না মেহেদি বকুল",designation_bn:"চীফ ইন্সট্রাক্টর ও বিভাগীয় প্রধান (২য় শিফট)",department_bn:"কম্পিউটার সায়েন্স এন্ড টেকনোলজি",technology:"computer"},
-{name_bn:"উম্মে হাবিবা",designation_bn:"ইন্সট্রাক্টর (টেক) কম্পিউটার",department_bn:"কম্পিউটার সায়েন্স এন্ড টেকনোলজি",technology:"computer"},
-{name_bn:"মোছাঃ মনিরা আকতার",designation_bn:"ইন্সট্রাক্টর ও বিভাগীয় প্রধান (১ম শিফট)",department_bn:"কম্পিউটার সায়েন্স এন্ড টেকনোলজি",technology:"computer"},
-{name_bn:"মোছাঃ কামরুন নেছা",designation_bn:"ইন্সট্রাক্টর (টেক) কম্পিউটার",department_bn:"কম্পিউটার সায়েন্স এন্ড টেকনোলজি",technology:"computer"},
-{name_bn:"মোঃ আমিনুল ইসলাম",designation_bn:"ইন্সট্রাক্টর (টেক) কম্পিউটার",department_bn:"কম্পিউটার সায়েন্স এন্ড টেকনোলজি",technology:"computer"},
-{name_bn:"মোসাঃ মৌসুমী খাতুন",designation_bn:"ইন্সট্রাক্টর (টেক) কম্পিউটার",department_bn:"কম্পিউটার সায়েন্স এন্ড টেকনোলজি",technology:"computer"},
-{name_bn:"মোঃ হুমায়ন রেজা",designation_bn:"ওয়ার্কশপ সুপারিনটেনডেন্ট (টেক)",department_bn:"কম্পিউটার সায়েন্স এন্ড টেকনোলজি",technology:"computer"},
-{name_bn:"তাহরিমা ইসলাম",designation_bn:"ইন্সট্রাক্টর (টেক) কম্পিউটার",department_bn:"কম্পিউটার সায়েন্স এন্ড টেকনোলজি",technology:"computer"},
-{name_bn:"রুপ কুমার সরকার",designation_bn:"জুনিয়র ইন্সট্রাক্টর (টেক/কম্পিউটার)",department_bn:"কম্পিউটার সায়েন্স এন্ড টেকনোলজি",technology:"computer"},
-{name_bn:"মোঃ আয়াতুল্লাহ সিদ্দিকী",designation_bn:"জুনিয়র ইন্সট্রাক্টর (টেক/কম্পিউটার)",department_bn:"কম্পিউটার সায়েন্স এন্ড টেকনোলজি",technology:"computer"},
-{name_bn:"সাজু মুহামমদ শাহজাদা",designation_bn:"চিফ ইন্সট্রাক্টর (নন-টেক)",department_bn:"আনুষঙ্গিক বিভাগ",technology:"other"},
-{name_bn:"নুরউদ্দিন মোহাম্মদ আলমগীর",designation_bn:"চিফ ইন্সট্রাক্টর (নন-টেক)",department_bn:"আনুষঙ্গিক বিভাগ",technology:"other"},
-{name_bn:"মোঃ সাইফুল ইসলাম",designation_bn:"ইন্সট্রাক্টর (নন-টেক)",department_bn:"আনুষঙ্গিক বিভাগ",technology:"other"},
-{name_bn:"মোঃ বাবলুর রহমান",designation_bn:"ইন্সট্রাক্টর (নন-টেক), গণিত",department_bn:"আনুষঙ্গিক বিভাগ",technology:"other"},
-{name_bn:"মনির হোসাইন",designation_bn:"ইন্সট্রাক্টর (নন-টেক)",department_bn:"আনুষঙ্গিক বিভাগ",technology:"other"},
-{name_bn:"মানিক কুমার বর্মন",designation_bn:"ইন্সট্রাক্টর (নন-টেক)",department_bn:"আনুষঙ্গিক বিভাগ",technology:"other"},
-{name_bn:"মোঃ জাহাঙ্গীর আলম",designation_bn:"ইন্সট্রাক্টর (নন-টেক)",department_bn:"আনুষঙ্গিক বিভাগ",technology:"other"},
-{name_bn:"মোঃ মেহেরুল ইসলাম",designation_bn:"জুনিয়র ইন্সট্রাক্টর (নন-টেক)",department_bn:"আনুষঙ্গিক বিভাগ",technology:"other"},
-{name_bn:"মোঃ আরিফুল ইসলাম",designation_bn:"জুনিয়র ইন্সট্রাক্টর (নন-টেক)",department_bn:"আনুষঙ্গিক বিভাগ",technology:"other"},
-{name_bn:"মোঃ জাহিদ কবির",designation_bn:"জুনিয়র ইন্সট্রাক্টর (নন-টেক)",department_bn:"আনুষঙ্গিক বিভাগ",technology:"other"},
-{name_bn:"আফরোজা নাসরিন রুনা",designation_bn:"জুনিয়র ইন্সট্রাক্টর (নন-টেক)",department_bn:"আনুষঙ্গিক বিভাগ",technology:"other"},
-{name_bn:"মোঃ ইমরান হোসেন",designation_bn:"জুনিয়র ইন্সট্রাক্টর (নন-টেক/রসায়ন)",department_bn:"আনুষঙ্গিক বিভাগ",technology:"other"}
-].map((x,i)=>({...x,name_en:x.name_bn,designation_en:x.designation_bn,department_en:x.department_bn,id:"official-"+i,is_published:true,sort_order:i}));
-
 const $=s=>document.querySelector(s),$=s=>[...document.querySelectorAll(s)];
-const seedFaculty=[...officialFaculty,...spreadsheetFaculty].filter((x,i,a)=>a.findIndex(y=>((y.name_bn||y.name_en||"").trim().toLocaleLowerCase()+"|"+(y.department_bn||y.department_en||"").trim().toLocaleLowerCase())===((x.name_bn||x.name_en||"").trim().toLocaleLowerCase()+"|"+(x.department_bn||x.department_en||"").trim().toLocaleLowerCase()))===i);
 function escapeHTML(v=""){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function setLang(next){lang=copy[next]?next:"bn";localStorage.setItem("bgpi-language",lang);document.documentElement.lang=lang;document.body.classList.toggle("en",lang==="en");$$("[data-t]").forEach(el=>{if(copy[lang][el.dataset.t]!==undefined)el.textContent=copy[lang][el.dataset.t]});$$("[data-t-html]").forEach(el=>{if(copy[lang][el.dataset.tHtml]!==undefined)el.innerHTML=copy[lang][el.dataset.tHtml]});$$("[data-placeholder]").forEach(el=>{el.placeholder=copy[lang][el.dataset.placeholder]||""});$$(".lang").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));renderFaculty();renderNotices();renderTechnologies();if(window.lucide)lucide.createIcons();}
 
@@ -69,7 +32,7 @@ function renderTechnologies(){
 
 function renderFaculty(){const grid=$("#teacherGrid");if(!grid)return;const q=($("#teacherSearch").value||"").toLowerCase().trim(),f=$("#teacherFilter").value;const rows=faculty.filter(x=>(f==="all"||x.technology===f)&&[x.name_bn,x.name_en,x.designation_bn,x.designation_en,x.department_bn,x.department_en,x.email,x.phone].some(v=>(v||"").toLowerCase().includes(q)));if(!rows.length){grid.innerHTML='<div class="empty"><i data-lucide="users"></i><b>'+escapeHTML(copy[lang][faculty.length?"noMatch":"teacherEmptyTitle"])+'</b><p>'+escapeHTML(copy[lang][faculty.length?"":"teacherEmpty"])+'</p></div>';if(window.lucide)lucide.createIcons();return;}grid.innerHTML=rows.map(x=>'<article class="teacher-card"><div class="teacher-photo">'+(x.photo_url?'<img src="'+escapeHTML(x.photo_url)+'" alt="" loading="lazy">':'<i data-lucide="user-round"></i>')+'</div><div class="teacher-info"><h3>'+escapeHTML(lang==="bn"?(x.name_bn||x.name_en):(x.name_en||x.name_bn))+'</h3><p>'+escapeHTML(lang==="bn"?(x.designation_bn||x.designation_en||""):(x.designation_en||x.designation_bn||""))+'</p><span class="teacher-tag">'+escapeHTML(lang==="bn"?(x.department_bn||x.department_en||""):(x.department_en||x.department_bn||""))+'</span>'+(x.phone?'<a class="teacher-contact" href="tel:'+escapeHTML(x.phone)+'"><i data-lucide="phone"></i>'+escapeHTML(x.phone)+'</a>':"")+(x.email?'<a class="teacher-contact" href="mailto:'+escapeHTML(x.email)+'"><i data-lucide="mail"></i>'+escapeHTML(x.email)+'</a>':"")+'</div></article>').join("");if(window.lucide)lucide.createIcons();}
 function renderNotices(){const list=$("#noticeList");if(!notices.length){list.innerHTML='<div class="empty-notice"><i data-lucide="calendar-clock"></i><span>'+escapeHTML(copy[lang].noticeEmpty)+'</span></div>';if(window.lucide)lucide.createIcons();return;}list.innerHTML=notices.map(n=>{const d=n.published_at?new Date(n.published_at):null;return '<article class="notice-item"><div class="notice-date"><b>'+(d&&!isNaN(d)?d.toLocaleDateString(lang==="bn"?"bn-BD":"en-GB",{day:"2-digit"}):"—")+'</b><small>'+(d&&!isNaN(d)?d.toLocaleDateString(lang==="bn"?"bn-BD":"en-GB",{month:"short",year:"numeric"}):"")+'</small></div><div class="notice-body"><b>'+escapeHTML(lang==="bn"?(n.title_bn||n.title_en):(n.title_en||n.title_bn))+'</b><p>'+escapeHTML(lang==="bn"?(n.summary_bn||n.summary_en||""):(n.summary_en||n.summary_bn||""))+'</p></div>'+(n.file_url?'<a class="notice-tag" href="'+escapeHTML(n.file_url)+'" target="_blank" rel="noopener">'+escapeHTML(copy[lang].pdf)+' ↗</a>':'<span class="notice-tag">'+escapeHTML(copy[lang].notice)+'</span>')+'</article>';}).join("");if(window.lucide)lucide.createIcons();}
-async function loadContent(){faculty=[...seedFaculty];renderFaculty();if(!SUPABASE_URL||!SUPABASE_ANON_KEY)return;try{const {createClient}=await import("https://esm.sh/@supabase/supabase-js@2");const db=createClient(SUPABASE_URL,SUPABASE_ANON_KEY);const [f,n]=await Promise.all([db.from("bgpi_faculty").select("id,name_bn,name_en,designation_bn,designation_en,department_bn,department_en,technology,photo_url,email,phone").eq("is_published",true).order("sort_order"),db.from("bgpi_notices").select("id,title_bn,title_en,summary_bn,summary_en,published_at,file_url").eq("is_published",true).order("published_at",{ascending:false}).limit(8)]);if(!f.error){const dbFaculty=f.data||[];const seen=new Set(dbFaculty.map(x=>(x.name_bn||x.name_en||"").trim().toLocaleLowerCase()+"|"+(x.department_bn||x.department_en||"").trim().toLocaleLowerCase()));faculty=[...dbFaculty,...seedFaculty.filter(x=>!seen.has((x.name_bn||x.name_en||"").trim().toLocaleLowerCase()+"|"+(x.department_bn||x.department_en||"").trim().toLocaleLowerCase()))];}if(!n.error)notices=n.data||[];renderFaculty();renderNotices();}catch(e){console.error("Could not load published content",e);}}
+async function loadContent(){faculty=[];notices=[];renderFaculty();renderNotices();if(!SUPABASE_URL||!SUPABASE_ANON_KEY)return;try{const {createClient}=await import("https://esm.sh/@supabase/supabase-js@2");const db=createClient(SUPABASE_URL,SUPABASE_ANON_KEY);const [f,n]=await Promise.all([db.from("bgpi_faculty").select("id,name_bn,name_en,designation_bn,designation_en,department_bn,department_en,technology,photo_url,email,phone").eq("is_published",true).order("sort_order"),db.from("bgpi_notices").select("id,title_bn,title_en,summary_bn,summary_en,published_at,file_url").eq("is_published",true).order("published_at",{ascending:false}).limit(8)]);if(f.error)throw f.error;faculty=f.data||[];if(!n.error)notices=n.data||[];renderFaculty();renderNotices();}catch(e){console.error("Could not load published BGPI content from Supabase",e);renderFaculty();renderNotices();}}
 $("#menu").addEventListener("click",()=>{const nav=$("#nav");nav.classList.toggle("open");$("#menu").setAttribute("aria-expanded",String(nav.classList.contains("open")));});
 $$("#nav a").forEach(a=>a.addEventListener("click",()=>$("#nav").classList.remove("open")));
 $$(".lang").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
