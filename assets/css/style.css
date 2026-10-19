@@ -979,3 +979,10 @@ button,input,select,a{accent-color:var(--engineering-cyan)}
 .department-heading>svg{color:#29b6c9!important}
 :root[data-theme="light"] .serial{background:#e2f3f6!important;border-color:#b9e2e8!important;color:#12667d!important}
 :root[data-theme="light"] .meta span,:root[data-theme="light"] .meta a{background:#eaf3f6!important;color:#1a4053!important}
+
+/* Clickable faculty cards open the complete public faculty profile. */
+.teacher-card-link{display:flex;color:inherit;text-decoration:none;position:relative;cursor:pointer;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.teacher-card-link:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 14px 34px #071a2a20}
+.teacher-card-link:focus-visible{outline:3px solid #47b7d4;outline-offset:3px}
+.teacher-profile-cta{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-size:12px;font-weight:800;color:var(--gold)}
+.teacher-profile-cta svg{width:15px;height:15px}
