@@ -849,3 +849,125 @@ img,svg{max-width:100%}
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+
+/* Engineering institute visual refresh: blueprint navy, steel, cyan and safety amber.
+   Deliberately scoped as a theme layer to preserve existing content and interactions. */
+:root{
+ --navy:#0c2438;
+ --navy2:#123a54;
+ --ink:#172d3e;
+ --muted:#637989;
+ --gold:#f0a83a;
+ --line:#d6e2e9;
+ --paper:#f2f6f8;
+ --engineering-cyan:#29b6c9;
+ --engineering-steel:#456d84;
+ --engineering-amber:#f0a83a;
+}
+html{scroll-padding-top:94px}
+body{
+ background-color:var(--paper);
+ background-image:linear-gradient(#2b688006 1px,transparent 1px),linear-gradient(90deg,#2b688006 1px,transparent 1px);
+ background-size:36px 36px;
+}
+.topbar{background:#071a2a;color:#b9d0dc;border-bottom:1px solid #29b6c933}
+.header{background:color-mix(in srgb,#f8fbfd 94%,transparent);border-bottom:1px solid #c8d9e3;box-shadow:0 5px 22px #071a2a0b}
+.logo{border-radius:12px!important;box-shadow:0 0 0 1px #29b6c944,0 5px 15px #071a2a18}
+.hero{
+ background:
+  linear-gradient(90deg,#29b6c90b 1px,transparent 1px),
+  linear-gradient(#29b6c90b 1px,transparent 1px),
+  radial-gradient(ellipse at 80% 20%,#1b637e 0,transparent 40%),
+  linear-gradient(120deg,#071a2a,#0c2b43 57%,#10435a);
+ background-size:32px 32px,32px 32px,auto,auto;
+ border-bottom:3px solid var(--engineering-cyan);
+}
+.hero:before{background-image:linear-gradient(#d5f4ff0b 1px,transparent 1px),linear-gradient(90deg,#d5f4ff0b 1px,transparent 1px);background-size:32px 32px}
+.eyebrow{border-color:#29b6c95c!important;background:#29b6c914}
+.eyebrow i{background:var(--engineering-amber);box-shadow:0 0 0 5px #f0a83a20}
+.hero h1 em,.section h2 em,.about-grid h2 em{color:var(--engineering-cyan)}
+.hero .primary,.primary,.navcta{background:linear-gradient(135deg,#147c96,#0c536f);border:1px solid #45d1df66;box-shadow:0 8px 22px #071a2a25}
+.hero .secondary,.secondary{border-color:#8ab8ca;color:inherit}
+.section{position:relative}
+.section:nth-of-type(even){background:linear-gradient(180deg,#eaf1f5b8,#f5f8fae8);border-block:1px solid #dbe7ed}
+.kicker{color:#147c96;letter-spacing:1.3px;text-transform:uppercase}
+.tech-card,.teacher-card,.contact-card,.notice-item,.about-grid .about-copy,.directory-tools,.faculty-card{
+ border-color:var(--line);
+}
+.tech-card,.teacher-card,.contact-card{
+ box-shadow:0 8px 24px #0c24380b;
+ border-radius:12px;
+}
+.tech-card{border-top:3px solid var(--accent,#29b6c9)}
+.tech-card:hover,.teacher-card:hover{box-shadow:0 15px 32px #0c24381a;border-color:#9ac9d7}
+.card-top svg,.teacher-tag{background:#e3f2f5;color:#12667d}
+.teacher-tag{border:1px solid #cce6eb}
+.teacher-photo{background:repeating-linear-gradient(135deg,#e7f0f4,#e7f0f4 9px,#dfeaf0 9px,#dfeaf0 18px)}
+.notice-list{border-top-color:#c8dbe4}
+.notice-item{border-bottom-color:#d5e3e9}
+.notice-tag{color:#81510b;background:#fff2d9;border:1px solid #f1d49a}
+.contact-card{border:1px solid #cfe0e8}
+.contact-card>span>svg{background:#e0f2f5;color:#147c96}
+.official-link{background:#e6f0f4;border:1px solid #d0e0e7}
+footer{background:linear-gradient(125deg,#071a2a,#0b2c43 70%,#104156);border-top:3px solid #29b6c9}
+.foot-top .logo{border:1px solid #29b6c9!important}
+.developer-credit .credit-line{background:#29b6c9!important}
+.developer-credit .credit-label{color:#7edbe4!important}
+button,input,select,a{accent-color:var(--engineering-cyan)}
+:root[data-theme="dark"]{
+ --paper:#071a28;
+ --ink:#e2edf3;
+ --muted:#9cb4c2;
+ --line:#294453;
+ --navy:#0b2639;
+ --navy2:#123b53;
+ --gold:#f0b04b;
+}
+:root[data-theme="dark"] body{
+ background-color:#071a28;
+ background-image:linear-gradient(#51c5d008 1px,transparent 1px),linear-gradient(90deg,#51c5d008 1px,transparent 1px);
+ background-size:36px 36px;
+ color:var(--ink);
+}
+:root[data-theme="dark"] .header{background:#0a2233ed;border-bottom-color:#244557}
+:root[data-theme="dark"] .section:nth-of-type(even){background:linear-gradient(180deg,#0c2636e8,#0a2030f5);border-color:#1e3b4c}
+:root[data-theme="dark"] .about-copy>p,:root[data-theme="dark"] .section-head>p{color:#a6bdca}
+:root[data-theme="dark"] .kicker{color:#55d0dc}
+:root[data-theme="dark"] .tech-card,:root[data-theme="dark"] .teacher-card,:root[data-theme="dark"] .contact-card{
+ background:#102b3d;border-color:#294858;color:#e2edf3;
+}
+:root[data-theme="dark"] .tech-card:hover,:root[data-theme="dark"] .teacher-card:hover{border-color:#3c9eb0;box-shadow:0 15px 35px #0004}
+:root[data-theme="dark"] .card-top svg,:root[data-theme="dark"] .teacher-tag,:root[data-theme="dark"] .contact-card>span>svg{
+ background:#173e51;color:#70d8e1;border-color:#28576a;
+}
+:root[data-theme="dark"] .teacher-photo{background:repeating-linear-gradient(135deg,#183748,#183748 9px,#1b3d50 9px,#1b3d50 18px);color:#83c8d3}
+:root[data-theme="dark"] .notice-list{border-color:#294858}
+:root[data-theme="dark"] .notice-item{border-color:#294858}
+:root[data-theme="dark"] .notice-date{background:#102b3d;border-color:#294858;color:#aac0cd}
+:root[data-theme="dark"] .notice-tag{background:#3a2c18;border-color:#725327;color:#ffd58b}
+:root[data-theme="dark"] .official-link{background:#17384b;border-color:#2b5063;color:#dceaf0}
+:root[data-theme="dark"] .contact-card small{color:#9bb4c1}
+:root[data-theme="dark"] .hero h1 em,:root[data-theme="dark"] .section h2 em,:root[data-theme="dark"] .about-grid h2 em{color:#62d5df}
+:root[data-theme="dark"] .directory-hero{background:linear-gradient(120deg,#061827,#0c3047 64%,#105064)!important;border-bottom:3px solid #29b6c9}
+:root[data-theme="dark"] .directory-tools,:root[data-theme="dark"] .faculty-card,:root[data-theme="dark"] .empty{background:#102b3d!important;border-color:#294858!important}
+:root[data-theme="dark"] .directory-hero .breadcrumb a,:root[data-theme="dark"] .directory-footer a{color:#f0b04b}
+:root[data-theme="dark"] .searchbox,:root[data-theme="dark"] .selectbox{background:#0a2232!important;border-color:#294858!important}
+:root[data-theme="dark"] .searchbox input,:root[data-theme="dark"] .selectbox select{color:#e2edf3!important}
+:root[data-theme="dark"] .faculty-details h3{color:#e2edf3}
+:root[data-theme="dark"] .department-heading{color:#e2edf3}
+:root[data-theme="dark"] .serial{background:#173e51!important;border-color:#2c6073!important;color:#77dce5!important}
+:root[data-theme="dark"] .meta span,:root[data-theme="dark"] .meta a{background:#17394c!important;color:#dceaf0!important}
+:root[data-theme="dark"] .clear-btn{background:linear-gradient(135deg,#147c96,#0c536f)!important;border-color:#3cb9c8}
+:root[data-theme="light"] .directory-hero{background:linear-gradient(120deg,#0b2639,#12435b 70%,#17677a)!important;border-bottom:3px solid #29b6c9}
+.directory-hero{position:relative;overflow:hidden}
+.directory-hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:30px 30px;mask-image:linear-gradient(90deg,#000,transparent 90%)}
+.directory-hero>.wrap{position:relative;z-index:1}
+.directory-tools{box-shadow:0 10px 30px #0c243810!important;border-radius:12px!important}
+.faculty-card{border-radius:12px!important;box-shadow:0 6px 18px #0c243809!important}
+.faculty-card:hover{border-color:#4fbac7!important;box-shadow:0 12px 28px #0c243816!important}
+.directory-footer a{color:#147c96}
+@media(max-width:700px){
+ body{background-size:28px 28px}
+ .hero{background-size:28px 28px,28px 28px,auto,auto}
+}
