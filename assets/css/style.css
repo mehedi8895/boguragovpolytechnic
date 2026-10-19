@@ -53,3 +53,35 @@ footer{background:#0b2d55}
 @media(max-width:1000px){.hero-grid{grid-template-columns:.92fr 1.08fr;gap:30px}.hero h1{font-size:clamp(40px,5vw,54px)}}
 @media(max-width:720px){.hero{padding-top:36px}.hero-grid{grid-template-columns:1fr;gap:0}.hero-copy{padding-bottom:8px}.hero h1{font-size:clamp(39px,10vw,52px)}.campus-photo-wrap{height:260px;margin:16px 6px 42px}.campus-photo-wrap:before{inset:10px -7px -8px 8px}.photo-label{left:10px;right:10px;bottom:10px;padding:10px}.photo-label b{font-size:11px}.photo-label small{font-size:8px}.photo-mark{width:34px;height:34px}.chip-a{right:-5px;top:28px}.chip-b{left:-5px;bottom:4px}.quick{background:#fff}}
 @media(prefers-reduced-motion:reduce){.reveal{transition:none}}
+
+/* Department career guides */
+.tech-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+.tech-detail-card{display:flex;flex-direction:column;min-width:0}
+.tech-icon-panel{min-height:105px;border-radius:14px;background:linear-gradient(135deg,#edf5ff,#f8fbff);display:flex;align-items:center;justify-content:center;gap:12px;color:#1b5d9e;margin:8px 0 15px;padding:15px}
+.tech-icon-panel>svg{width:34px;height:34px;stroke-width:1.7}
+.tech-icon-panel span{font-size:13px;font-weight:700}
+.tech-detail-card>h3{font-size:18px;line-height:1.5;margin:0 0 8px}
+.tech-detail-card>p{font-size:13px;line-height:1.8;color:#5e7186}
+.career-details{margin-top:10px;border:1px solid #dce8f5;border-radius:12px;background:#f9fbfe;overflow:hidden}
+.career-details summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:13px;font-size:12px;font-weight:800;color:#195895}
+.career-details summary::-webkit-details-marker{display:none}
+.career-details[open] summary{background:#edf5ff;border-bottom:1px solid #dce8f5}
+.career-details summary span{font-size:18px;line-height:1}
+.career-details[open] summary span{transform:rotate(45deg)}
+.career-content{padding:14px}
+.career-content h4{font-size:12px;color:#173e68;margin:12px 0 6px}
+.career-content h4:first-child{margin-top:0}
+.career-content ul{padding-left:18px;margin:0;color:#536980;font-size:12px;line-height:1.8}
+.career-content li{padding:2px 0}
+.job-sources{display:flex;flex-wrap:wrap;gap:6px}
+.job-sources a{font-size:10px;font-weight:700;background:#e9f3ff;border:1px solid #d5e7fb;border-radius:7px;padding:7px 9px;color:#16599c}
+.job-sources a:hover{background:#d9eaff}
+.career-content .job-caveat{font-size:11px;line-height:1.75;background:#fff8e8;color:#75551a;padding:10px;border-radius:8px;margin:12px 0 0}
+.tech-teacher-link{margin-top:auto;padding-top:14px;font-size:12px;font-weight:800;color:#1768b5}
+.faculty-intro{max-width:600px;color:#5c7187;font-size:13px;line-height:1.9;margin:12px 0}
+.faculty-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.faculty-links .btn{min-height:40px;font-size:11px}
+.faculty-outline{border:1px solid #cbdced;color:#19558e;background:#fff}
+.filters{align-self:center}
+@media(max-width:960px){.tech-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.tech-grid{grid-template-columns:1fr}.tech-icon-panel{min-height:80px}.faculty-links{align-items:stretch}.faculty-links .btn{justify-content:center}}
