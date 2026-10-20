@@ -986,3 +986,85 @@ button,input,select,a{accent-color:var(--engineering-cyan)}
 .teacher-card-link:focus-visible{outline:3px solid #47b7d4;outline-offset:3px}
 .teacher-profile-cta{display:inline-flex;align-items:center;gap:5px;margin-top:12px;font-size:12px;font-weight:800;color:var(--gold)}
 .teacher-profile-cta svg{width:15px;height:15px}
+
+
+/* Accessibility contrast repair: both themes */
+:root{color-scheme:light dark}
+:root[data-theme="light"]{
+ --ink:#173247;--muted:#4e6576;--line:#ccd9e2;--paper:#f5f8fa;
+}
+:root[data-theme="dark"]{
+ --ink:#e8f1f6;--muted:#b4c6d1;--line:#345160;--paper:#091d2b;
+}
+:root[data-theme="light"] body{color:#173247}
+:root[data-theme="light"] .section-head>p,
+:root[data-theme="light"] .about-copy>p,
+:root[data-theme="light"] .tech-card p,
+:root[data-theme="light"] .teacher-info p,
+:root[data-theme="light"] .notice-body p,
+:root[data-theme="light"] .contact-line,
+:root[data-theme="light"] .contact-card-title small,
+:root[data-theme="light"] .contact-line small,
+:root[data-theme="light"] .foot-top>p,
+:root[data-theme="light"] .foot-bottom,
+:root[data-theme="light"] .developer-credit .credit-meta,
+:root[data-theme="light"] .empty p,
+:root[data-theme="light"] .directory-count,
+:root[data-theme="light"] .designation{color:#40596b!important}
+:root[data-theme="light"] .section h2,
+:root[data-theme="light"] .about-grid h2,
+:root[data-theme="light"] .contact-heading h2,
+:root[data-theme="light"] .teacher-info h3,
+:root[data-theme="light"] .notice-body b,
+:root[data-theme="light"] .faculty-details h3,
+:root[data-theme="light"] .department-heading,
+:root[data-theme="light"] .directory-count strong{color:#122e43!important}
+:root[data-theme="light"] .filters,
+:root[data-theme="light"] .filters label,
+:root[data-theme="light"] .filters select,
+:root[data-theme="light"] .searchbox,
+:root[data-theme="light"] .selectbox,
+:root[data-theme="light"] .searchbox input,
+:root[data-theme="light"] .selectbox select{color:#173247!important}
+:root[data-theme="light"] input::placeholder{color:#607789!important;opacity:1}
+:root[data-theme="dark"] body{color:#e8f1f6}
+:root[data-theme="dark"] .section-head>p,
+:root[data-theme="dark"] .about-copy>p,
+:root[data-theme="dark"] .tech-card p,
+:root[data-theme="dark"] .teacher-info p,
+:root[data-theme="dark"] .notice-body p,
+:root[data-theme="dark"] .contact-line,
+:root[data-theme="dark"] .contact-card-title small,
+:root[data-theme="dark"] .contact-line small,
+:root[data-theme="dark"] .foot-top>p,
+:root[data-theme="dark"] .foot-bottom,
+:root[data-theme="dark"] .developer-credit .credit-meta,
+:root[data-theme="dark"] .empty p,
+:root[data-theme="dark"] .directory-count,
+:root[data-theme="dark"] .designation{color:#b9cbd6!important}
+:root[data-theme="dark"] .section h2,
+:root[data-theme="dark"] .about-grid h2,
+:root[data-theme="dark"] .contact-heading h2,
+:root[data-theme="dark"] .teacher-info h3,
+:root[data-theme="dark"] .notice-body b,
+:root[data-theme="dark"] .faculty-details h3,
+:root[data-theme="dark"] .department-heading,
+:root[data-theme="dark"] .directory-count strong{color:#edf5f8!important}
+:root[data-theme="dark"] .filters,
+:root[data-theme="dark"] .filters label,
+:root[data-theme="dark"] .filters select,
+:root[data-theme="dark"] .searchbox,
+:root[data-theme="dark"] .selectbox,
+:root[data-theme="dark"] .searchbox input,
+:root[data-theme="dark"] .selectbox select{color:#e8f1f6!important}
+:root[data-theme="dark"] input::placeholder{color:#a6bdca!important;opacity:1}
+:root[data-theme="light"] .theme-toggle{background:#fff;color:#173247;border-color:#b8cbd7}
+:root[data-theme="dark"] .theme-toggle{background:#102b3d;color:#edf5f8;border-color:#365568}
+:root[data-theme="light"] .nav nav a{color:#29485e}
+:root[data-theme="dark"] .nav nav a{color:#e2edf3}
+:root[data-theme="light"] .teacher-profile-cta{color:#85550a}
+:root[data-theme="dark"] .teacher-profile-cta{color:#ffd083}
+:root[data-theme="light"] a:focus-visible,
+:root[data-theme="light"] button:focus-visible,
+:root[data-theme="dark"] a:focus-visible,
+:root[data-theme="dark"] button:focus-visible{outline:3px solid #29b6c9;outline-offset:3px}
