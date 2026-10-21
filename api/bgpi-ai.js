@@ -14,6 +14,12 @@ module.exports = async function handler(req,res) {
   let body=req.body;
   if (typeof body==="string") { try { body=JSON.parse(body); } catch { body={}; } }
   if (!body || typeof body!=="object") body={};
+  const ip=String(req.headers["x-forwarded-for"]||req.socket?.remoteAddress||"unknown").split(",")[0].trim();
+  const now=Date.now();
+  const bucket=globalThis.__bgpiAiRate||(globalThis.__bgpiAiRate=new Map());
+  const recent=(bucket.get(ip)||[]).filter(t=>now-t<60000);
+  if(recent.length>=12)return json(res,429,{error:"Too many questions in a short time. Please wait a minute and try again."});
+  recent.push(now);bucket.set(ip,recent);
   const message=String(body.message||"").trim().slice(0,1200);
   if (!message) return json(res,400,{error:"Please enter a question."});
   if (!process.env.OPENAI_API_KEY) return json(res,503,{code:"AI_NOT_CONFIGURED"});
