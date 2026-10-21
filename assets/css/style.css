@@ -1068,3 +1068,6 @@ button,input,select,a{accent-color:var(--engineering-cyan)}
 :root[data-theme="light"] button:focus-visible,
 :root[data-theme="dark"] a:focus-visible,
 :root[data-theme="dark"] button:focus-visible{outline:3px solid #29b6c9;outline-offset:3px}
+
+
+/* BGPI AI styles are maintained in assets/css/bgpi-ai.css. */
