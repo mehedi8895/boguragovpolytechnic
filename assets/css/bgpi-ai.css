@@ -36,3 +36,5 @@
 @keyframes bgpiAiIn{from{opacity:0;transform:translateY(8px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:650px){.bgpi-ai-fab{right:14px;bottom:14px;padding:6px 13px 6px 6px;gap:8px}.bgpi-ai-fab img{width:45px;height:45px}.bgpi-ai-panel{right:8px;bottom:76px;width:calc(100vw - 16px);height:min(72dvh,610px);min-height:360px;border-radius:19px}.bgpi-ai-visibility #bgpiAiVisibilityButton{font-size:9px;padding:5px 6px}.top-controls{gap:7px}.bgpi-ai-message{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.bgpi-ai-fab,.bgpi-ai-panel{animation:none;transition:none}}
+
+@media(max-width:420px){.topinner>span{max-width:70px;line-height:1.25}.bgpi-ai-visibility #bgpiAiVisibilityButton{font-size:8px;padding:5px 5px}.top-controls{gap:4px}.topbar .lang{padding:3px 6px}.theme-toggle{gap:4px!important}.theme-toggle span{font-size:9px}}
